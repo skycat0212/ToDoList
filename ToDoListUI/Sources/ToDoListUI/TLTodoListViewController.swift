@@ -44,6 +44,7 @@ public class TLTodoListViewController: UIViewController {
         
         self.configureLayout()
         self.configureTableView()
+        self.configureNavigation()
     }
     
     // MARK: - func
@@ -52,10 +53,17 @@ public class TLTodoListViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             self.tableView.topAnchor.constraint(equalTo: self.safeArea.topAnchor),
-            self.tableView.bottomAnchor.constraint(equalTo: self.safeArea.bottomAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
             self.tableView.leadingAnchor.constraint(equalTo: self.safeArea.leadingAnchor),
             self.tableView.trailingAnchor.constraint(equalTo: self.safeArea.trailingAnchor),
         ])
+    }
+    
+    func configureNavigation() {
+        // TODO: navigationController.view 의 색상 지정에 대한 책임은 누구한테 있는지 생각해보기
+        // TODO: 색상 값 모아서 관리하기
+        self.navigationController?.view.backgroundColor = .cyan
+        self.navigationController?.navigationBar.backgroundColor = .cyan
     }
     
 }
