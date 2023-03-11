@@ -6,17 +6,13 @@
 //
 
 import UIKit
-public struct Todo {
-    let title: String
-    let description: String
-}
+
+import TLCore
 
 public class TLTodoListViewController: UIViewController {
     
-    
     // MARK: - property
-    // TODO: 초기값 없애기
-    public var todoList: [Todo] = [] {
+    public var todoList: [TLTodo] = [.init("ha", "ho")] {
         didSet {
             self.tableView.reloadData()
         }

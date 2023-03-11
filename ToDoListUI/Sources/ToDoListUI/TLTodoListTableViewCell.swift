@@ -7,9 +7,11 @@
 
 import UIKit
 
+import TLCore
+
 class TLTodoListTableViewCell: UITableViewCell {
     
-    var todo: Todo? {
+    var todo: TLTodo? {
         didSet {
             self.todoTitleLabel.text = self.todo?.title
             self.todoDescriptionLabel.text = self.todo?.description
