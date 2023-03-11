@@ -12,7 +12,7 @@ import TLCore
 public class TLTodoListViewController: UIViewController {
     
     // MARK: - property
-    public var todoList: [TLTodo] = [.init("ha", "ho")] {
+    public var todoList: [TLTodo] = [] {
         didSet {
             self.tableView.reloadData()
         }
