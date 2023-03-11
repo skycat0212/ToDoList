@@ -12,6 +12,7 @@ public class TLTodoListViewController: UIViewController {
     struct TodoList {}
     
     // MARK: - property
+    // TODO: 초기값 없애기
     var todoList: [TodoList] = [.init(), .init(), .init()] {
         didSet {
             self.tableView.reloadData()
