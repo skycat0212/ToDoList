@@ -17,13 +17,17 @@ public class TLTodoListViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-    
-    open var didSelect: (() -> Void)?
+    public var hasPlusButton: Bool {
+        didSet {
+            self.updateNavigationUI()
+        }
+    }
+    public var didSelect: (() -> Void)?
+    public var plusButtonAction: (() -> Void)?
     
     var safeArea: UILayoutGuide {
         self.view.safeAreaLayoutGuide
     }
-    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +35,8 @@ public class TLTodoListViewController: UIViewController {
     }()
 
     // MARK: - lifecycle
-    public init(){
+    public init(hasPlusButton: Bool = true){
+        self.hasPlusButton = hasPlusButton
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -63,7 +68,31 @@ public class TLTodoListViewController: UIViewController {
         // TODO: navigationController.view 의 색상 지정에 대한 책임은 누구한테 있는지 생각해보기
         // TODO: 색상 값 모아서 관리하기
         self.navigationController?.view.backgroundColor = .cyan
+        self.updateNavigationUI()
+    }
+    
+    func updateNavigationUI() {
         self.navigationController?.navigationBar.backgroundColor = .cyan
+        
+        self.navigationItem.title = "할 일 목록"
+        
+        if hasPlusButton {
+            let addTodoButton: UIBarButtonItem = {
+                let button = UIBarButtonItem(
+                    image: UIImage(systemName: "plus") ?? UIImage(),
+                    style: .plain,
+                    target: self,
+                    action: #selector(self.touchUpInsidePlusButton)
+                )
+                return button
+            }()
+            self.navigationItem.rightBarButtonItems = [addTodoButton]
+        }
+    }
+    
+    @objc
+    func touchUpInsidePlusButton() {
+        self.plusButtonAction?()
     }
     
 }
