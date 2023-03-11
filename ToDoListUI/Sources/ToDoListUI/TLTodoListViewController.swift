@@ -6,14 +6,17 @@
 //
 
 import UIKit
+public struct Todo {
+    let title: String
+    let description: String
+}
 
 public class TLTodoListViewController: UIViewController {
     
-    public struct TodoList {}
     
     // MARK: - property
     // TODO: 초기값 없애기
-    public var todoList: [TodoList] = [.init(), .init(), .init()] {
+    public var todoList: [Todo] = [] {
         didSet {
             self.tableView.reloadData()
         }
@@ -82,6 +85,7 @@ extension TLTodoListViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
+        cell.todo = todoList[indexPath.row]
         return cell
     }
     
