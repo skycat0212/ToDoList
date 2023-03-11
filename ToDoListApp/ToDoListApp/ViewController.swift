@@ -7,13 +7,22 @@
 
 import UIKit
 
+import ToDoListUI
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let vc = TLTodoListViewController()
+        self.present(vc,animated: true)
+    }
 
 }
+
 
