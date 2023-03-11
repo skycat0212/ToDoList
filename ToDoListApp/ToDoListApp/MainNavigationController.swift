@@ -11,8 +11,10 @@ import ToDoListUI
 
 class MainNavigationController: UINavigationController {
     
+    let rootViewController: UIViewController
+    
     init() {
-        let rootViewController = TLTodoListViewController()
+        self.rootViewController = TLTodoListViewController()
         super.init(rootViewController: rootViewController)
     }
     
@@ -24,6 +26,21 @@ class MainNavigationController: UINavigationController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        self.configureRootViewController()
     }
-
+    
+    func configureRootViewController() {
+        guard let todoListViewController = self.rootViewController as? TLTodoListViewController else { return }
+        
+        todoListViewController.didSelect = { todo in
+            let viewController = UIViewController()
+            self.pushViewController(viewController, animated: true)
+        }
+        
+        todoListViewController.plusButtonAction = {
+            let viewController = UIViewController()
+            viewController.view.backgroundColor = .yellow
+            self.present(viewController, animated: true)
+        }
+    }
 }

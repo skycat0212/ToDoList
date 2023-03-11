@@ -22,7 +22,7 @@ public class TLTodoListViewController: UIViewController {
             self.updateNavigationUI()
         }
     }
-    public var didSelect: (() -> Void)?
+    public var didSelect: ((TLTodo) -> Void)?
     public var plusButtonAction: (() -> Void)?
     
     var safeArea: UILayoutGuide {
@@ -126,6 +126,7 @@ extension TLTodoListViewController: UITableViewDataSource {
 
 extension TLTodoListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.didSelect?()
+        let todo = todoList[indexPath.row]
+        self.didSelect?(todo)
     }
 }
