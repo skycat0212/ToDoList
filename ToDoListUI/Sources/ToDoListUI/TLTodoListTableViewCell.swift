@@ -13,8 +13,8 @@ class TLTodoListTableViewCell: UITableViewCell {
     
     var todo: TLTodo? {
         didSet {
-            self.todoTitleLabel.text = self.todo?.title
-            self.todoDescriptionLabel.text = self.todo?.description
+            self.todoTitleLabel.text = "TODO: \(self.todo?.title ?? "")"
+            self.todoDescriptionLabel.text = "Description: \(self.todo?.description ?? "")"
         }
     }
     
