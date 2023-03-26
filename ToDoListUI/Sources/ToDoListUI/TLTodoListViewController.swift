@@ -128,5 +128,6 @@ extension TLTodoListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todo = todoList[indexPath.row]
         self.didSelect?(todo)
+        tableView.cellForRow(at: indexPath)?.isSelected = false
     }
 }
