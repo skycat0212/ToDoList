@@ -7,6 +7,7 @@
 
 import UIKit
 
+import TLCore
 import ToDoListUI
 
 class MainNavigationController: UINavigationController {
@@ -32,7 +33,7 @@ class MainNavigationController: UINavigationController {
     func configureRootViewController() {
         guard let todoListViewController = self.rootViewController as? TLTodoListViewController else { return }
         
-        todoListViewController.didSelect = { todo in
+        todoListViewController.didSelect = { (todo: TLTodo) -> Void in
             let viewController = UIViewController()
             self.pushViewController(viewController, animated: true)
         }
