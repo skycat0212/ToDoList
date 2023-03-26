@@ -34,7 +34,7 @@ class MainNavigationController: UINavigationController {
         guard let todoListViewController = self.rootViewController as? TLTodoListViewController else { return }
         
         todoListViewController.didSelect = { (todo: TLTodo) -> Void in
-            let viewController = UIViewController()
+            let viewController = TLTodoDetailViewController(todo: todo)
             self.pushViewController(viewController, animated: true)
         }
         
